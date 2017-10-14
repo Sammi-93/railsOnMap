@@ -1,0 +1,16 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway:300,700');
+* { box-sizing: border-box; }
+
+body {
+  color: #C0AABE;
+  font-family: 'Raleway', sans-serif;
+  font-size: 1.2rem;
+  line-height: 1.45;
+}
+#map { 
+	display: grid;
+	grid-template-columns: 1fr;
+	grid-template-rows: 1fr;
+	grid-row-start: 1;
+	height: 900px;
+}
