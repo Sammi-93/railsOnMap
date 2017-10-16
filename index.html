@@ -3,27 +3,15 @@
 <head>
 	<meta charset = "UTF-8">
 	<meta name = "viewport" content = "width = device-width, initial-scale = 1.0">
-	<title>Rails On Maps</title>
-	
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<title>Rail On Maps</title>
+	<script type = 'text/javascript' src="railsOnMap.js"></script>
 	<link rel="stylesheet" href="railsOnMap.css">
-
 </head>
 <body>
-	<!-- <div id="map">
-		<div id = "search-box">
-			<input type = 'text' id = "train-search" size="50">
-		</div>
-	</div> -->
-	<input id="pac-input" class="controls" type="text" placeholder="Search Box">
-    <div  id="map-canvas"></div>
-
-    	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAaCgFkYUQ9OMKceYNhsSOgjvcQ9AHWBB0&libraries=places"></script>
-    <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAaCgFkYUQ9OMKceYNhsSOgjvcQ9AHWBB0&libraries=geometry,places">
-</script>
- -->
-    <script type = 'text/javascript' src="railsOnMap.js"></script>
-	
+	<div id="map"></div>
+	<script async defer
+    	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBLqBoEgE5lQzzY7q5mBMvAXtMR3H0Ccu4
+		&callback=initMap">
+    </script>
 </body>
 </html>
