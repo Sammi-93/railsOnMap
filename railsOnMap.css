@@ -134,7 +134,7 @@ body {
   list-style-type: none;
   height:400px; 
   margin-top: 210px;
-  overflow: scroll;
+  overflow-y: scroll;
 }
 #suggestions > li {
   display: block;
@@ -142,6 +142,11 @@ body {
   margin-right: 150px;
   height: 20px;
 } 
+#suggestions::-webkit-scrollbar{
+  display: none;
+}
 #suggestions > li:hover {
   background-color: wheat;
 }
+
+
