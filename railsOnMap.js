@@ -4,30 +4,106 @@ function initMap() {
     var newDelhi = {lat: 28.644800, lng: 77.216721};
     var options = {
     	center: center,
-  		zoom: 5			
+  		zoom: 5
+  			
     }
     var map = new google.maps.Map(document.getElementById('map'), options);
     var marker = new google.maps.Marker({
     	position: newDelhi,
     	map: map
     });
-    var stations = fetch('https://raw.githubusercontent.com/datameet/railways/master/stations.json')
-  			    .then(response => response.json())
-                .then(data => {
-        		// Do what you want with your data
+    // var stations = fetch('https://raw.githubusercontent.com/datameet/railways/master/stations.json')
+  		// 	    .then(response => response.json())
+    //             .then(data => {
+    //     		// Do what you want with your data
 
-        			for (var i = 0; i < data.features.length; i++) {
-        				if(data.features[i].geometry!=null) {
-          			var coords = data.features[i].geometry.coordinates;
-          			var latLng = new google.maps.LatLng(coords[1],coords[0]);
-          			var marker = new google.maps.Marker({
-            		position: latLng,
-          	  		map: map
-          		});
-       		 }
-       	}
-     });
+    //     			for (var i = 0; i < data.features.length; i++) {
+    //     			if(data.features[i].geometry!=null) {
+    //       			var coords = data.features[i].geometry.coordinates;
+    //       			var latLng = new google.maps.LatLng(coords[1],coords[0]);
+    //       			var marker = new google.maps.Marker({
+    //         		position: latLng,
+    //       	  		map: map
+    //       		});
+    //    		 }
+    //    	}
+    //  });
 }
+var trainsUrl = 'https://raw.githubusercontent.com/datameet/railways/master/trains.json';
+	const trains = [];
+	const trainNameNumber = [];
+	fetch(trainsUrl).then(response => response.json())
+					.then((data) => {
+						trains.push(data.features);
+						// var train=[];
+						// for (var i = 0; i < data.features.length; i++) {
+      //   					if(data.features[i].properties.name!=null) {
+      //     					var nameOfTrain = data.features[i].properties.name;
+      //     					var numberOfTrain = data.features[i].properties.number;
+      //     					train.push({
+      //     						train_name : nameOfTrain,
+      //     						train_no: numberOfTrain
+      //     					});
+      //     					trains.push(train[i]);
+
+						for(var i = 0; i< trains[0].length;i++){
+							if(trains[0][i].properties.name){
+							var trainName = trains[0][i].properties.name;
+							var trainNumber = trains[0][i].properties.number;
+							var trainNameNo = {
+								trainNumber: trainNumber,
+								trainName: trainName
+							};
+							trainNameNumber.push(trainNameNo);
+						} 
+					}
+      //  		 		}
+      //  			}
+			});
+
+function searchTrains() {
+	
+	// function search(train, trains) {
+	// 	return trains.filter(result => {
+	// 		const regex = new RegExp(train, 'gi');
+	// 		 trains[].train_name.match(regex) || trains.train_no.match(regex);
+	// 	});
+	// }
+	
+	function findTrains(matchTrain,trainNameNumber) {
+		let matchedTrains=[];
+		var regex = new RegExp(matchTrain,'gi');
+		for(var k in trainNameNumber) {
+			if(trainNameNumber[k].trainName.match(regex) || trainNameNumber[k].trainNumber.match(regex) ) {
+				matchedTrains.push(trainNameNumber[k]);
+			}
+		}
+		return matchedTrains;
+	}
+	
+	function displayMatches() {
+		if(this.value){
+		const matchTrains = findTrains(this.value, trainNameNumber);
+		const searchResults = matchTrains.map(train =>{
+			return `<li id = 'trainInfo${train.trainNumber}' class = "trainInfo">
+			<span>${train.trainNumber}   ${train.trainName}</span>
+			</li>`
+		}).join('');
+		suggestions.innerHTML = searchResults;
+	}
+}
+	const searchInput = document.getElementById('trainNameNumber');
+	const suggestions = document.getElementById('suggestions');
+	searchInput.addEventListener('change', displayMatches);
+	searchInput.addEventListener('keyup', displayMatches);
+
+
+}
+function findRoute(trainNameNumber) {
+	const element = document.getElementById(trainNameNumber);
+	console.log(element);	
+}
+	 
 
 // function initialize() {
 

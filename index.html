@@ -6,9 +6,22 @@
 	<title>Rail On Maps</title>
 	<script type = 'text/javascript' src="railsOnMap.js"></script>
 	<link rel="stylesheet" href="railsOnMap.css">
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
-	<div id="map"></div>
+	<div id="container">
+		<div id="map"></div>
+			<div class="wrap">
+   				<div class="search">
+      				<input type="text" onClick = "searchTrains()"  id= "trainNameNumber" class="searchTerm" placeholder="Enter trains?">
+      				<button type="submit" class="searchButton">
+        				<i class="fa fa-search"></i>
+     				</button>
+   				</div>
+			</div>
+		<ul id="suggestions"></ul>		
+	</div>	
 	 <script async defer
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAUovynDrUs-hiqWnP5P3K5DKOlE8OZ74o&callback=initMap">
     </script>
